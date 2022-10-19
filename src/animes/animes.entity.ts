@@ -1,13 +1,14 @@
-import { Column, PrimaryColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity({ name: 'animes' })
 export class Anime {
-  @PrimaryColumn({ type: 'uuid' })
+  @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'array' })
+  @Column({ type: 'text' })
   categories: [];
 
   @Column({ type: 'boolean' })
@@ -16,15 +17,15 @@ export class Anime {
   @Column({ type: 'text' })
   description: string;
 
-  @Column({ type: 'number' })
+  @Column({ type: 'integer' })
   seasons: number;
 
   @Column({ type: 'varchar' })
   image_url: string;
 
-  @Column({ type: 'number' })
+  @Column({ type: 'integer' })
   stars: number;
 
-  @Column({ type: 'number' })
+  @Column({ type: 'integer' })
   realeased_year: number;
 }

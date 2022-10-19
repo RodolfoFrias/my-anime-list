@@ -18,6 +18,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           database: DB_NAME,
           password: PASSWORD,
           port: +PORT,
+          synchronize: true,
+          autoLoadEntities: true,
         };
       },
     }),

@@ -22,7 +22,7 @@ export class AnimesController {
   }
 
   @Put(':animeId')
-  update(@Param() animeId) {
-    return this.animeService.update(animeId);
+  update(@Param() animeId, @Body() changes) {
+    return this.animeService.update(animeId, changes);
   }
 }
