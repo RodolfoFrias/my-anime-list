@@ -7,5 +7,6 @@ import { Anime } from 'src/animes/animes.entity';
   imports: [TypeOrmModule.forFeature([Anime])],
   controllers: [AnimesController],
   providers: [AnimesService],
+  exports: [AnimesService],
 })
 export class AnimesModule {}

@@ -7,7 +7,9 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHomePage(@Res() res: Response) {
-    return res.render('app', { message: 'Hello world!' });
+  async getHomePage(@Res() res: Response) {
+    const animes = await this.appService.getAnimes();
+    console.log(animes)
+    return res.render('app', { animes: animes });
   }
 }

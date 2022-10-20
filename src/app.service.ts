@@ -1,8 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { Anime } from './animes/animes.entity';
+import { AnimesService } from './animes/animes.service';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Hello World Otaku!';
+  constructor(private animeService: AnimesService) {}
+
+  async getAnimes(): Promise<Anime[]> {
+    return this.animeService.findAll();
   }
 }
