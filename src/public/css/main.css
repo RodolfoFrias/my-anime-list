@@ -2,6 +2,7 @@ main {
     margin: 5% 
 }
 
-.card {
-    display: inline-block;
+img {
+    width: 1000px;
+    height: 450px;
 }

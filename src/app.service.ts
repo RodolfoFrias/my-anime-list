@@ -9,4 +9,8 @@ export class AppService {
   async getAnimes(): Promise<Anime[]> {
     return this.animeService.findAll();
   }
+
+  async getAnime(animeId: string): Promise<Anime> {
+    return this.animeService.findOne(animeId);
+  }
 }

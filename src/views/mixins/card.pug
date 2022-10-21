@@ -5,4 +5,5 @@ mixin card (animes)
       .card-body
         h5.card-title= val.name
         p.card-text= val.description
-        a.btn.btn-primary(href='#') Ver
+        a.btn.btn-primary(href='/view/'+val.id)
+          i.bi.bi-eye
