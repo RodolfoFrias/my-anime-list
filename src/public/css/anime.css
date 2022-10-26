@@ -1,0 +1,9 @@
+.anime-card {
+    width: 70%;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.stars {
+    display: inline-block;
+}

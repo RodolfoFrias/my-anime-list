@@ -8,8 +8,8 @@ export class Anime {
   @Column({ type: 'varchar', length: 255 })
   name: string;
 
-  @Column({ type: 'text' })
-  categories: [];
+  @Column({ type: 'text', array: true, nullable: true })
+  categories: string[];
 
   @Column({ type: 'boolean' })
   is_in_emision: boolean;
