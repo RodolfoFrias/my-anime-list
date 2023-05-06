@@ -9,5 +9,10 @@ export default registerAs('config', () => {
       USER: process.env.POSTGRES_USER,
       HOST: process.env.POSTGRES_HOST,
     },
+    thirdPartyAPI: {
+      API_KEY: process.env.API_KEY,
+      API_HOST: process.env.API_HOST,
+      API_URL: process.env.API_URL,
+    },
   };
 });
