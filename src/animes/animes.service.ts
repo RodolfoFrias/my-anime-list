@@ -10,7 +10,7 @@ export class AnimesService {
 
   create(payload: CreateAnimeDTO): Promise<Anime> {
     const newAnime = this.animeRepo.create(payload);
-    return this.animeRepo.save(newAnime);
+    return this.animeRepo.save(newAnime); //acción duplicada, quitar esta lines
   }
 
   findAll(): Promise<Anime[]> {
@@ -18,9 +18,11 @@ export class AnimesService {
   }
 
   async findOne(id: string): Promise<Anime> {
+    //retorna null o algo
     const anime = await this.animeRepo.findOne({
       where: { id: id },
     });
+    //usar funcion de lodash
     if (!anime) {
       throw new Error('Anime not found');
     }

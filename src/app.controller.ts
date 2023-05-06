@@ -8,14 +8,11 @@ export class AppController {
 
   @Get()
   async getHomePage(@Res() res: Response) {
-    const animes = await this.appService.getAnimes();
-    return res.render('app', { animes: animes });
+    res.send('OK');
   }
 
-  @Get('/view/:animeId')
+  @Get('/view/')
   async getSinglePage(@Res() res: Response, @Param() param) {
-    const { animeId } = param;
-    const anime = await this.appService.getAnime(animeId);
-    return res.render('pages/anime', { anime: anime });
+    res.send('OK');
   }
 }

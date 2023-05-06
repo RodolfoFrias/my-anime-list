@@ -1,9 +1,0 @@
-mixin card (animes)
-  each val, key in animes
-    .card(style='width: 18rem; display: inline-block; margin: 1%; top: 0;')
-      img.card-img-top(src=val.image_url)
-      .card-body
-        h5.card-title= val.name
-        p.card-text= val.description
-        a.btn.btn-primary(href='/view/'+val.id)
-          i.bi.bi-eye
