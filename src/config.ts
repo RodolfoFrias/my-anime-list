@@ -14,5 +14,6 @@ export default registerAs('config', () => {
       API_HOST: process.env.API_HOST,
       API_URL: process.env.API_URL,
     },
+    origin: process.env.ORIGIN,
   };
 });

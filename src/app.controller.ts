@@ -1,17 +1,17 @@
-import { Controller, Get, Res, Next, Inject } from '@nestjs/common';
+import { Controller, Get, Res, Next, Inject, ConsoleLogger } from '@nestjs/common';
 import { Response, NextFunction } from 'express';
 import { AppService } from './app.service';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 @Controller()
 export class AppController {
-  private TTL = 5 * 60 * 60 * 1000; // 5hrs
+  private TTL = 24 * 60 * 60 * 1000; // 24hrs
   constructor(
     private readonly appService: AppService,
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
-  @Get('/animes')
+  @Get('/external/animes')
   async allAnimes(@Res() res: Response, @Next() next: NextFunction) {
     try {
       let animesInMemory = await this.cacheManager.get('animes');
@@ -19,6 +19,7 @@ export class AppController {
       if (!animesInMemory) {
         console.log('Calling API, no animes in memory');
         animesInMemory = await this.appService.getAnimes();
+        console.log('Animes', animesInMemory)
         await this.setCache(animesInMemory);
       }
 
