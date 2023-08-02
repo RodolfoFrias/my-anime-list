@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from 'src/users/users.entity';
 import { CreateUserDTO, UpdateUserDTO } from './users.dto';
+import { isNil } from 'lodash';
 
 @Injectable()
 export class UsersService {
@@ -18,21 +19,21 @@ export class UsersService {
   }
 
   async findOne(id: string): Promise<User> {
-    const anime = await this.userRepo.findOne({
+    const user = await this.userRepo.findOne({
       where: { id: id },
     });
 
-    if (!anime) {
+    if (!isNil(user)) {
       throw new Error('User not found');
     }
-    return anime;
+    return user;
   }
 
   async update(id: string, changes: UpdateUserDTO): Promise<User> {
-    const anime = await this.userRepo.findOne({
+    const user = await this.userRepo.findOne({
       where: { id: id },
     });
-    this.userRepo.merge(anime, changes);
-    return this.userRepo.save(anime);
+    this.userRepo.merge(user, changes);
+    return this.userRepo.save(user);
   }
 }

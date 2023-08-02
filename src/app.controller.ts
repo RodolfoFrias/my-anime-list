@@ -1,4 +1,4 @@
-import { Controller, Get, Res, Next, Inject, ConsoleLogger } from '@nestjs/common';
+import { Controller, Get, Res, Next, Inject } from '@nestjs/common';
 import { Response, NextFunction } from 'express';
 import { AppService } from './app.service';
 import { CACHE_MANAGER } from '@nestjs/cache-manager';
@@ -19,7 +19,7 @@ export class AppController {
       if (!animesInMemory) {
         console.log('Calling API, no animes in memory');
         animesInMemory = await this.appService.getAnimes();
-        console.log('Animes', animesInMemory)
+        console.log('Animes', animesInMemory);
         await this.setCache(animesInMemory);
       }
 

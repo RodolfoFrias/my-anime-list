@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Anime } from './animes/animes.entity';
 import { AnimesService } from './animes/animes.service';
 import axios, { AxiosResponse } from 'axios';
 import { ConfigService } from '@nestjs/config';

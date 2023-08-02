@@ -1,14 +1,38 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseFilePipeBuilder,
+  Post,
+  Put,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
 import { AnimesService } from './animes.service';
 import { CreateAnimeDTO } from './animes.dto';
+import { FileInterceptor } from '@nestjs/platform-express/multer';
 
 @Controller('animes')
 export class AnimesController {
   constructor(private animeService: AnimesService) {}
 
   @Post()
-  create(@Body() body: CreateAnimeDTO) {
-    return this.animeService.create(body);
+  @UseInterceptors(FileInterceptor('file'))
+  create(
+    @Body() body: CreateAnimeDTO,
+    @UploadedFile(
+      new ParseFilePipeBuilder()
+        .addFileTypeValidator({
+          fileType: 'jpg',
+        })
+        .build({
+          fileIsRequired: false,
+        }),
+    )
+    file: Express.Multer.File,
+  ) {
+    return this.animeService.create(body, file);
   }
 
   @Get('all')
