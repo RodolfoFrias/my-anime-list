@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Logger, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Anime } from 'src/animes/animes.entity';
@@ -11,6 +11,7 @@ type AnimeFile = Express.Multer.File;
 @Injectable()
 export class AnimesService {
   private s3: S3;
+  private readonly logger = new Logger(AnimesService.name);
   constructor(
     @InjectRepository(Anime) private animeRepo: Repository<Anime>,
     private configService: ConfigService,
@@ -51,7 +52,7 @@ export class AnimesService {
       const s3Response = await this.s3.upload(params).promise();
       return s3Response;
     } catch (e) {
-      console.log(e);
+      this.logger.error(e);
     }
   }
 
